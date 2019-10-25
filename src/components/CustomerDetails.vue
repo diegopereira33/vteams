@@ -7,15 +7,12 @@
             <button class="btn btn-danger" v-on:click="deleteCustomer(customer.id)">Delete</button>
             </span>
     </h1>
-    <ul class="list-group">
-            <li class="list-group-item"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> {{customer.phone}}</li>
-            <li class="list-group-item"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{customer.email}}</li>
-        </ul>
+<br>
 
         <ul class="list-group">
-            <li class="list-group-item"> {{customer.address}}</li>
-            <li class="list-group-item">{{customer.city}}</li>
-            <li class="list-group-item">{{customer.state}}</li>
+            <li class="list-group-item"> {{customer.id}}</li>
+            <li class="list-group-item">{{customer.name}}</li>
+            <li class="list-group-item">{{customer.description}}</li>
         </ul>
   </div>
 </template>
@@ -30,15 +27,15 @@ export default {
   },
   methods:{
       fetchCustomer(id){
-          this.$http.get('http://slimapp/api/customer/'+id)
+          this.$http.get('http://localhost:5000/api/teams/'+id)
           .then(function(response){
             this.customer = response.body;
           });
       },
       deleteCustomer(id){
-          this.$http.delete('http://slimapp/api/customer/delete/'+id)
+          this.$http.delete('http://localhost:5000/api/teams/'+id)
           .then(function(response){
-            this.$router.push({path: '/', query: {alert: 'Customer Deleted'}});
+            this.$router.push({path: '/', query: {alert: 'Team Deleted'}});
           });
       }
   },

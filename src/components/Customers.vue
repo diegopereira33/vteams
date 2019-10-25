@@ -1,23 +1,23 @@
 <template>
   <div class="customers container">
     <Alert v-if="alert" v-bind:message="alert" />
-    <h1 class="page-header">Manage Customers</h1>
-    <input class="form-control" placeholder="Enter Last Name" v-model="filterInput">
+    <h1 class="page-header">Manage Teams</h1>
+    <input class="form-control" placeholder="Name" v-model="filterInput">
     <br />
     <table class="table table-striped">
         <thead>
           <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="customer in filterBy(customers, filterInput)">
-            <td>{{customer.first_name}}</td>
-            <td>{{customer.last_name}}</td>
-            <td>{{customer.email}}</td>
+            <td>{{customer.id}}</td>
+            <td>{{customer.name}}</td>
+            <td>{{customer.description}}</td>
             <td><router-link class="btn btn-default" v-bind:to="'/customer/'+customer.id">View</router-link></td>
           </tr>
         </tbody>
@@ -31,22 +31,24 @@
     name: 'customers',
     data () {
       return {
-        customers: [],
+        customers: {},
         alert:'',
         filterInput:''
       }
     },
     methods: {
       fetchCustomers(){
-        this.$http.get('http://slimapp/api/customers')
+        this.$http.get('http://localhost:5000/api/teams')
           .then(function(response){
-            this.customers = response.body;
+            //this.customers = response.body;
+              this.customers = response.body;
           });
       },
       filterBy(list, value){
         value = value.charAt(0).toUpperCase() + value.slice(1);
         return list.filter(function(customer){
-          return customer.last_name.indexOf(value) > -1;
+          //return customer.last_name.indexOf(value) > -1;
+            return customer.name.indexOf(value) > -1;
         });
       }
     },

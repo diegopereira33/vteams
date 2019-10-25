@@ -39,7 +39,7 @@ new Vue({
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">vCustomers</a>
+          <a class="navbar-brand" href="#">PlayNow</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -47,7 +47,7 @@ new Vue({
             <li><router-link to="/about">About</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><router-link to="/add">Add Customer</router-link></li>
+            <li><router-link to="/add">Add Teams</router-link></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

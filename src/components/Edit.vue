@@ -1,44 +1,22 @@
 <template>
   <div class="edit container">
     <Alert v-if="alert" v-bind:message="alert" />
-    <h1 class="page-header">Edit Customer</h1>
+    <h1 class="page-header">Edit Team</h1>
     <form v-on:submit="updateCustomer">
         <div class="well">
-            <h4>Customer Info</h4>
+            <h4>Team Info</h4>
             <div class="form-group">
-                <label>First Name</label>
-                <input type="text" class="form-control" placeholder="First Name" v-model="customer.first_name">
+                <label>Id</label>
+                <input type="text" class="form-control" placeholder="Id" v-model="customer.id">
             </div>
             <div class="form-group">
-                <label>Last Name</label>
-                <input type="text" class="form-control" placeholder="Last Name" v-model="customer.last_name">
+                <label>Name</label>
+                <input type="text" class="form-control" placeholder="Name" v-model="customer.name">
             </div>
-        </div>
-        <div class="well">
-            <h4>Customer Contact</h4>
-            <div class="form-group">
-                <label>Email</label>
-                <input type="text" class="form-control" placeholder="Email" v-model="customer.email">
-            </div>
-            <div class="form-group">
-                <label>Phone</label>
-                <input type="text" class="form-control" placeholder="Phone" v-model="customer.phone">
-            </div>
-        </div>
 
-        <div class="well">
-            <h4>Customer Location</h4>
-            <div class="form-group">
-                <label>Address</label>
-                <input type="text" class="form-control" placeholder="Address" v-model="customer.address">
-            </div>
-            <div class="form-group">
-                <label>City</label>
-                <input type="text" class="form-control" placeholder="City" v-model="customer.city">
-            </div>
-            <div class="form-group">
-                <label>State</label>
-                <input type="text" class="form-control" placeholder="State" v-model="customer.state">
+           <div class="form-group">
+               <label>Description</label>
+               <input type="text" class="form-control" placeholder="Description" v-model="customer.description">
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -58,28 +36,25 @@
     },
     methods: {
         fetchCustomer(id){
-            this.$http.get('http://slimapp/api/customer/'+id)
+            this.$http.get('http://localhost:5050/api/teams/'+id)
             .then(function(response){
                 this.customer = response.body;
             });
         },
         updateCustomer(e){
-            if(!this.customer.first_name || !this.customer.last_name || !this.customer.email){
+            if(!this.customer.id || !this.customer.name || !this.customer.description){
                 this.alert = 'Please fill in all required fields';
             } else {
                 let updCustomer = {
-                    first_name: this.customer.first_name,
-                    last_name: this.customer.last_name,
-                    phone: this.customer.phone,
-                    email: this.customer.email,
-                    address: this.customer.address,
-                    city: this.customer.city,
-                    state: this.customer.state
+                    id: this.customer.id,
+                    name: this.customer.name,
+                    description: this.customer.description
                 }
 
-                this.$http.put('http://slimapp/api/customer/update/'+this.$route.params.id, updCustomer)
+                this.$http.put('http://localhost:5000/api/teams/'+this.$route.params.id, updCustomer)
+                //this.$http.put('http://localhost:5000/api/teams/'+id, updCustomer)
                     .then(function(response){
-                        this.$router.push({path: '/', query: {alert: 'Customer Updated'}});
+                        this.$router.push({path: '/', query: {alert: 'Team Updated'}});
                     });
 
                 e.preventDefault();

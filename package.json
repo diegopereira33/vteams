@@ -1,14 +1,15 @@
 {
-  "name": "vcustomers",
+  "name": "vteams",
   "version": "1.0.0",
-  "description": "Simple customer manager",
-  "author": "Brad Traversy <me@bradtraversy>",
+  "description": "Simple teams manager",
+  "author": "diego.pereira",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js"
   },
   "dependencies": {
+    "postcss-reduce-initial": "^4.0.3",
     "vue": "^2.1.0",
     "vue-resource": "^1.0.3",
     "vue-router": "^2.1.1"
